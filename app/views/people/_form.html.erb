@@ -1,4 +1,8 @@
 <% form_params = [person] if local_assigns[:form_params].nil? %>
+<% puts("---------")%>
+<% puts(local_assigns)%>
+<% puts("---------")%>
+<% enrolling = FALSE if local_assigns[:enrolling].nil?%>
 <%= form_for(*form_params) do |f| %>
 
   <div class="field form-group">
@@ -34,7 +38,14 @@
     <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control' %>
   </div>
 
-  <div class="form-group actions">
-    <%= f.submit local_assigns[:submit_btn_text], class: "btn btn-success" %>
-  </div>
+  <% if enrolling %>
+    <div class="form-group actions">
+      <%= f.submit local_assigns[:submit_btn_text], class: "btn btn-success" %>
+    </div>
+  <% else %>
+    <div class="form-group actions">
+      <%= f.submit local_assigns[:submit_btn_text], class: "btn btn-success" %>
+    </div>
+  <%end%>
+
 <% end %>

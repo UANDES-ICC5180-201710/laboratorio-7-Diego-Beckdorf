@@ -66,6 +66,8 @@ class CoursesController < ApplicationController
   end
 
   def students
+    @person = Person.new
+    @enrollment = Enrollment.new
   end
 
   private
